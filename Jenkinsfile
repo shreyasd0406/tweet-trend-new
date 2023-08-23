@@ -13,14 +13,15 @@ environment {
                sh 'mvn clean deploy'
             }
         }
-        stage('SonarQube analysis') {
-           environment {
-             scannerHome = tool 'marvel-sonar-scanner'
-           }
-           steps{
-            withSonarQubeEnv('marvel-sonarqube-server') 
-             sh "${scannerHome}/bin/sonar-scanner"
-           }
-        }
+    }
+    
+    stage('SonarQube analysis') {
+    environment {
+      scannerHome = tool 'marvel-sonar-scanner'
+    }
+    steps{
+    withSonarQubeEnv('marvel-sonarqube-server') 
+      sh "${scannerHome}/bin/sonar-scanner"
+         }
     }
 }
