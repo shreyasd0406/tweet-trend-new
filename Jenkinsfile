@@ -19,8 +19,8 @@ environment {
       scannerHome = tool 'marvel-sonar-scanner'
     }
     steps{
-    withSonarQubeEnv('marvel-sonarqube-server') 
-      sh "${scannerHome}/bin/sonar-scanner"
+      withSonarQubeEnv('marvel-sonarqube-server') 
+        sh "${scannerHome}/bin/sonar-scanner"
     }
     }
     }
