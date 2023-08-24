@@ -1,4 +1,6 @@
 def registry = 'https://marvel07.jfrog.io/'
+def imageName = 'https://marvel07.jfrog.io/marvel-docker-local/marvel'
+def version = "2.1.2"
 pipeline {
     agent {
         node {
@@ -46,7 +48,7 @@ environment {
     }
     }
 
-        stage("Jar Publish") {
+        stage("Jar Publish") { 
           steps {
             script {
                     echo '<--------------- Jar Publish Started --------------->'
@@ -70,6 +72,28 @@ environment {
             
             }
         }   
+    }
+
+    stage("Docker Build") {
+        steps {
+           script {
+            echo '<--------------------Docker Build started------------------->'
+            app = docker.build(imageName+":"+version)
+            echo '<--------------------Docker Build Completed----------------->'
+           }
+        }
+    }
+
+    stage("Docker Publish") {
+        steps {
+           script {
+              echo '<-------------------Docker Publish Started----------------->'
+              docker.withRegistry(registry, 'JFrog-cred') {
+                app.push()
+              }
+              echo '------------------Docker Publish Completed---------------->'
+           } 
+        }
     }
   }
 }
