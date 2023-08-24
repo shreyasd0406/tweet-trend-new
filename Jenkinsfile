@@ -1,5 +1,5 @@
 def registry = 'https://marvel07.jfrog.io/'
-def imageName = 'https://marvel07.jfrog.io/marvel-docker-local/marvel'
+def imageName = 'marvel07.jfrog.io/marvel-docker-local/marvel'
 def version = "2.1.2"
 pipeline {
     agent {
