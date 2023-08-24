@@ -79,16 +79,16 @@ environment {
            script {
             echo '<--------------------Docker Build started------------------->'
             app = docker.build(imageName+":"+version)
-            echo '<--------------------Docker Build Completed----------------->'
+            echo '<--------------------Docker Build Ends----------------->'
            }
         }
     }
 
-    stage("Docker Publish") {
-        steps {
-           script {
+       stage("Docker Publish") {
+          steps {
+            script {
               echo '<-------------------Docker Publish Started----------------->'
-              docker.withRegistry(registry, 'JFrog-cred') {
+               docker.withRegistry(registry, 'JFrog-cred'){
                 app.push()
               }
               echo '------------------Docker Publish Completed---------------->'
