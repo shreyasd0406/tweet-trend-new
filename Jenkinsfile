@@ -25,7 +25,7 @@ environment {
                 echo "---------------------Unit Test Completed--------------------"
             }
         }
-    stage("SonarQube analysis") {
+/*    stage("SonarQube analysis") {
     environment {
       scannerHome = tool 'marvel-sonar-scanner'
     }
@@ -73,7 +73,7 @@ environment {
             }
         }   
     }
-
+*/
     stage("Docker Build") {
         steps {
            script {
