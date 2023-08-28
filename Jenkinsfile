@@ -95,5 +95,21 @@ environment {
            } 
         }
     }
+
+    stage("Approval for the Deployment on Kubernetes ") {
+        steps {
+            input "Please approve the Deployment on Kubernetes"
+        }
+    }
+
+    stage("Deploy on Kubernetes") {
+        steps{
+            script{
+                echo '<------------Deployment on Kubernetes Started----------->'
+                sh './deploy.sh'
+                echo '-------------Deployment on Kubernetes Ended------------->'
+            }
+        }
+    }
   }
 }
