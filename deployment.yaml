@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marvel-rtp
+  namespace: marvel
+spec:
+  selector:
+    matchLabels:
+      app: marvel-rtp
+  template:
+    metadata:
+      labels:
+        app: marvel-rtp
+    spec:
+      imagePullSecrets:
+      - name: jfrogcred
+      containers:
+      - name: marvel-rtp
+        image: marvel07.jfrog.io/marvel-docker/marvel:2.1.2
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000
+        env:
+        - name: CONSUMER_KEY
+          value: "G6lmKhsi0V9TvXt6oKTfjRBCr"
+        - name: CONSUMER_SECRET
+          value: "bEyDk8X0p8SQd4376eoNV4nH8To22sHcJOoFt0ZqOKS37hhI4q"
+        - name: ACCESS_TOKEN
+          value: "9703354-52rXHD6EeOQeYyhtNz1w8UVOgbcLcgOo4O7MB6WV3"
+        - name: ACCESS_TOKEN_SECRET
+          value: "zBThlZDEp8qnu7NwwdHNth8eg3Rf9zqbvUEFUTaZtN2SF"
